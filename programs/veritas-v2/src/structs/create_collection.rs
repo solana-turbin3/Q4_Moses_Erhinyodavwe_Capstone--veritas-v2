@@ -60,7 +60,7 @@ pub struct CreateCollection<'info>{
 
 
 impl<'info> CreateCollection<'info> {
-    pub fn create_collection(&mut self, bumps: &CreateCollectionBumps) -> Result<()> {
+    pub fn create_collection(&mut self, bumps: &CreateCollectionBumps, collection_name:String, symbol:String) -> Result<()> {
 
         let metadata = &self.metadata.to_account_info();
         let master_edition = &self.master_edition.to_account_info();
@@ -108,9 +108,9 @@ impl<'info> CreateCollection<'info> {
             },
             CreateMetadataAccountV3InstructionArgs {
                 data: DataV2 {
-                    name: "DummyCollection".to_owned(),
-                    symbol: "DC".to_owned(),
-                    uri: "".to_owned(),
+                    name: collection_name.to_owned(),
+                    symbol: symbol.to_owned(),
+                    uri:"".to_owned(),
                     seller_fee_basis_points: 0,
                     creators: Some(creator),
                     collection: None,
